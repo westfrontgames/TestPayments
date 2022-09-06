@@ -1,0 +1,53 @@
+<div class="content-image"></div>
+<div class="content">
+  <div class="table">
+    <h1>Payments</h1>
+    <div class="table-row">
+      <div class="table-cell-label">
+        <span>Name: </span>
+      </div>
+      <div class="table-cell-data">
+        <span>{{ customerInfo.name }}</span>
+      </div>
+      <div class="table-cell-label">
+        <span>Email: </span>
+      </div>
+      <div class="table-cell-data">
+        <span>{{ customerInfo.email }}</span>
+      </div>
+    </div>
+    <div class="table-row">
+      <div class="table-cell-label">
+        <span>Account #: </span>
+      </div>
+      <div class="table-cell-data">
+        <span>{{ customerInfo.accountNumber }}</span>
+      </div>
+      <div class="table-cell-label">
+        <span>Payment Amt: </span>
+      </div>
+      <div class="table-cell-data">
+        <span>{{ customerInfo.paymentAmount | currencyOrDefault }}</span>
+      </div>
+    </div>
+    <div class="table-row">
+      <div class="table-cell-label">
+        <span>Old Balance: </span>
+      </div>
+      <div class="table-cell-data">
+        <span>{{ customerInfo.accountBalance | currencyOrDefault }}</span>
+      </div>
+      <div class="table-cell-label">
+        <span>New Balance: </span>
+      </div>
+      <div class="table-cell-data">
+        <span>{{ customerInfo.newAccountBalance | currencyOrDefault }}</span>
+      </div>
+    </div>
+
+    <app-payment-form
+      (sendCustomerPaymentInfo)="processCustomerPaymentInfo($event)"
+      (formCleared)="clearPaymentData()"
+    ></app-payment-form>
+  </div>
+</div>

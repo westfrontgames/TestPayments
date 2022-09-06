@@ -1,0 +1,38 @@
+.content-image {
+  width: 100%;
+  background-image: url("https://rocketcentral.com/wp-content/uploads/2022/01/rocket-central-home-bg-cropped.png");
+  height: 50px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: repeat;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  padding: 10px;
+}
+
+.table-row {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.table-cell-label {
+  width: 100px;
+  display: inline-flex;
+  font-weight: bold;
+}
+
+.table-cell-data {
+  width: 150px;
+  display: inline-flex;
+}
+
+h1 {
+  margin-top: 0;
+}

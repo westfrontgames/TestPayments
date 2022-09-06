@@ -1,0 +1,159 @@
+<div class="form-position">
+  <div class="table">
+    <div class="header"><span>Make a Payment</span></div>
+    <form (ngSubmit)="onSubmitForm()" [formGroup]="paymentFormGroup">
+      <!-- Name -->
+      <div class="table-row">
+        <div class="table-cell-label">
+          <label for="name">Name:</label><label class="required">*</label>
+        </div>
+        <div class="table-cell-input">
+          <input
+            id="name"
+            type="text"
+            formControlName="name"
+            class="input-text"
+            maxlength="50"
+            [ngClass]="
+              isSubmitted &&
+              formControls['name'].errors &&
+              formControls['name'].errors['required']
+                ? 'input-required'
+                : ''
+            "
+          />
+        </div>
+      </div>
+      <div
+        class="error-row"
+        *ngIf="
+          isSubmitted &&
+          formControls['name'].errors &&
+          formControls['name'].errors['required']
+        "
+      >
+        <div class="table-cell-label"></div>
+        <div class="table-cell-input">
+          <label class="validation-error">Please enter a name</label>
+        </div>
+      </div>
+      <!-- Email -->
+      <div class="table-row">
+        <div class="table-cell-label">
+          <label for="email">Email:</label>
+        </div>
+        <div class="table-cell-input">
+          <input
+            id="email"
+            type="text"
+            formControlName="email"
+            class="input-text"
+            placeholder="xxx@yyy.zzz"
+            maxlength="50"
+            [ngClass]="isSubmitted && invalidEmail ? 'input-invalid' : ''"
+          />
+        </div>
+      </div>
+      <div class="error-row" *ngIf="isSubmitted && invalidEmail">
+        <div class="table-cell-label"></div>
+        <div class="table-cell-input">
+          <label class="validation-error">Please enter a valid email</label>
+        </div>
+      </div>
+      <!-- Account # -->
+      <div class="table-row">
+        <div class="table-cell-label">
+          <label for="accountNumber">Account #:</label
+          ><label class="required">*</label>
+        </div>
+        <div class="table-cell-input">
+          <input
+            id="accountNumber"
+            type="number"
+            formControlName="accountNumber"
+            class="input-text"
+            placeholder="only numbers, max 10"
+            onKeyPress="if(this.value.length==10) return false;"
+            [ngClass]="
+              isSubmitted &&
+              formControls['accountNumber'].errors &&
+              formControls['accountNumber'].errors['required']
+                ? 'input-required'
+                : ''
+            "
+          />
+        </div>
+      </div>
+      <div
+        class="error-row"
+        *ngIf="
+          isSubmitted &&
+          formControls['accountNumber'].errors &&
+          formControls['accountNumber'].errors['required']
+        "
+      >
+        <div class="table-cell-label"></div>
+        <div class="table-cell-input">
+          <label class="validation-error">Please enter an account number</label>
+        </div>
+      </div>
+      <!-- Payment Amt -->
+      <div class="table-row">
+        <div class="table-cell-label">
+          <label for="paymentAmount">Payment Amt:</label
+          ><label class="required">*</label>
+        </div>
+        <div class="table-cell-input">
+          <input
+            id="paymentAmount"
+            type="text"
+            maxlength="10"
+            formControlName="paymentAmount"
+            class="input-text"
+            placeholder="xxx.yy (optional decimals)"
+            [ngClass]="
+              isSubmitted &&
+              formControls['paymentAmount'].errors &&
+              formControls['paymentAmount'].errors['required']
+                ? 'input-required'
+                : ''
+            "
+          />
+        </div>
+      </div>
+      <div
+        class="error-row"
+        *ngIf="
+          invalidAmount ||
+          (isSubmitted &&
+            formControls['paymentAmount'].errors &&
+            formControls['paymentAmount'].errors['required'])
+        "
+      >
+        <div class="table-cell-label"></div>
+        <div class="table-cell-input">
+          <label class="validation-error"
+            >Please enter a valid amount (xxx.##)</label
+          >
+        </div>
+      </div>
+      <div class="error-row" *ngIf="payExceedsBalance">
+        <div class="table-cell-label"></div>
+        <div class="table-cell-input">
+          <label class="validation-error"
+            >Payment can't exceed balance ({{ accountBalance }})</label
+          >
+        </div>
+      </div>
+
+      <div class="button-row">
+        <div class="table-cell">
+          <button type="submit" class="button">Submit</button>
+          <button (click)="clearForm()" type="reset" class="button">
+            Clear Form
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

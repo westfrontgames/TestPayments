@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="col-4"></div>
+  <div class="col-4 header-text">
+    <span>Let's get you connected to the right team</span>
+  </div>
+  <div class="col-4"></div>
+</div>
+<div class="col-12 reason-row">
+  <div class="col-3"></div>
+  <div class="col-6">
+    <div class="reasons">
+      <span class="reason-header"> Reason for contacting Rocket Central</span
+      ><br />
+      <select (change)="reasonChanged()" class="reason-text">
+        <option>Select a contact reason...</option>
+        <option>
+          I recently applied for a position with Rocket Central and I want to
+          learn more
+        </option>
+        <option>
+          I want to talk to someone about my pay statement or I need W2
+          documents
+        </option>
+        <option>I need an employment verification</option>
+        <option>I have questions about an invoice I have received</option>
+        <option>I have questions about an invoice I have submitted</option>
+      </select>
+    </div>
+  </div>
+  <div class="col-3"></div>
+</div>
+<div class="col-12 reply-row" *ngIf="showReply">
+  <div class="col-3"></div>
+  <div class="col-6 flex-center">
+    <img src="assets/images/contact.png" class="not-found-image" />
+    <p>
+      <span class="contact-text"
+        >Thanks! I'll get back to you as soon as I can</span
+      >
+    </p>
+  </div>
+  <div class="col-3"></div>
+</div>

@@ -1,0 +1,30 @@
+<div class="content">
+  <div class="col-12 flex-center">
+    <div class="col-4 flex-center">
+      <img src="assets/images/rocketcentral2.png" />
+      <span
+        [ngClass]="showAffirm ? 'show-affirm' : 'hide-affirm'"
+        class="affirm-text"
+        >{{ affirmation }}</span
+      >
+    </div>
+    <div class="col-8 right">
+      <ul>
+        <li><a routerLink="payments">Payments</a></li>
+        <li><a routerLink="expenses">Expenses</a></li>
+        <li><a routerLink="about">About</a></li>
+        <li><a routerLink="careers">Careers</a></li>
+        <li><a routerLink="clients">Our Clients</a></li>
+        <li><a routerLink="contact">Contact Us </a></li>
+        <li>
+          <a
+            (mouseover)="hoverAffirm(true)"
+            (mouseout)="hoverAffirm(false)"
+            [ngClass]="showAffirm ? 'hide' : ''"
+            >Affirm
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

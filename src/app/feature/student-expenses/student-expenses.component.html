@@ -1,0 +1,37 @@
+<div class="content-image"></div>
+<div class="content">
+  <div class="table">
+    <h1>Expenses</h1>
+    <div class="table-row">
+      <div *ngIf="showTotals">
+        <div class="header"><span>Amount Owed</span></div>
+        <div class="table-cell-header">
+          <span>Student</span>
+        </div>
+        <div class="table-cell-header">
+          <span>Amount</span>
+        </div>
+        <div class="table-cell-header">
+          <span>Recipient</span>
+        </div>
+        <ng-container *ngFor="let student of studentTotals">
+          <div class="table-row">
+            <div class="table-cell-data">
+              <span>{{ student.studentName }}</span>
+            </div>
+            <div class="table-cell-data">
+              <span>{{ student.amountOwed | currencyOrDefault }}</span>
+            </div>
+            <div class="table-cell-data">
+              <span>{{ student.owedTo }}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <app-expense-form
+        (showStudentTotals)="showStudentTotals($event)"
+      ></app-expense-form>
+    </div>
+  </div>
+</div>

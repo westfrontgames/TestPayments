@@ -1,0 +1,78 @@
+<div class="form-position">
+  <div class="table">
+    <div class="header"><span>Submit an Expense</span></div>
+    <!-- Name -->
+    <div class="table-row">
+      <div class="table-cell-label">
+        <label for="name">Student:</label>
+      </div>
+      <div class="table-cell-input">
+        <input
+          id="name"
+          type="text"
+          class="input-text"
+          maxlength="50"
+          [(ngModel)]="expense.name"
+          [ngClass]="expense.invalidName ? 'input-required' : ''"
+        />
+      </div>
+    </div>
+    <div class="error-row" *ngIf="expense.invalidName">
+      <div class="table-cell-label"></div>
+      <div class="table-cell-input">
+        <label class="validation-error">Please enter a name</label>
+      </div>
+    </div>
+    <!-- Amount -->
+    <div class="table-row">
+      <div class="table-cell-label">
+        <label for="paymentAmount">Amount:</label>
+      </div>
+      <div class="table-cell-input">
+        <input
+          id="paymentAmount"
+          type="text"
+          maxlength="10"
+          class="input-text"
+          placeholder="xxx.yy (optional decimals)"
+          [(ngModel)]="expense.amount"
+          [ngClass]="expense.invalidAmount ? 'input-required' : ''"
+        />
+      </div>
+    </div>
+    <div class="error-row" *ngIf="expense.invalidAmount">
+      <div class="table-cell-label"></div>
+      <div class="table-cell-input">
+        <label class="validation-error">Please enter a valid amount (xxx.##)</label>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <div class="table-cell">
+        <button type="button" class="button" (click)="saveExpense()">
+          Submit
+        </button>
+        <button (click)="clearForm()" type="button" class="button">
+          Clear Form
+        </button>
+        <button (click)="showTotals()" type="button" class="button">
+          Calculate Totals
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="separator"><hr /></div>
+  <div class="table">
+    <div class="header">
+      <span>All Expenses ({{ totalCurrExpenses | currencyOrDefault }})</span>
+    </div>
+    <!-- Expenses By Student (using keyvalue pipe)-->
+    <div class="table-row">
+      <div *ngFor="let student of allCurrExpenses | keyvalue">
+        <div class="table-cell-wide">
+          <span>{{ [student.key] }}: {{ student.value }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
