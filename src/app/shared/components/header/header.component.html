@@ -1,6 +1,23 @@
 <div class="content">
   <div class="col-12 flex-center">
-    <div class="col-4 flex-center">
+    <div class="col-4 flex-center mobile">
+      <input type="checkbox" id="hamburger-input" class="burger-shower" />
+      <label id="hamburger-menu" for="hamburger-input">
+        <nav id="sidebar-menu">
+          <h3>Menu</h3>
+          <ul>
+            <li><a routerLink="payments">Payments</a></li>
+            <li><a routerLink="expenses">Expenses</a></li>
+            <li><a routerLink="about">About</a></li>
+            <li><a routerLink="careers">Careers</a></li>
+            <li><a routerLink="clients">Our Clients</a></li>
+            <li><a routerLink="contact">Contact Us </a></li>
+          </ul>
+        </nav>
+      </label>
+      <div class="overlay"></div>
+    </div>
+    <div class="col-4 flex-center left">
       <img src="assets/images/rocketcentral2.png" />
       <span
         [ngClass]="showAffirm ? 'show-affirm' : 'hide-affirm'"
@@ -8,7 +25,13 @@
         >{{ affirmation }}</span
       >
     </div>
-    <div class="col-8 right">
+    <div class="col-8 right tablet">
+      <ul>
+        <li><a routerLink="payments">Payments</a></li>
+        <li><a routerLink="expenses">Expenses</a></li>
+      </ul>
+    </div>
+    <div class="col-8 right desktop">
       <ul>
         <li><a routerLink="payments">Payments</a></li>
         <li><a routerLink="expenses">Expenses</a></li>

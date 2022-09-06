@@ -1,7 +1,7 @@
 .footer-box {
   width: 100%;
   background-color: #000;
-  height: 120px;
+  height: 130px;
   margin: 0;
   justify-content: center;
   padding-top: 10px;
@@ -30,6 +30,7 @@
   display: table;
   font-size: 12px;
   font-weight: lighter;
+  text-align: left;
 }
 
 .table {
@@ -43,6 +44,7 @@
   color: #fff;
   display: table;
   margin: auto;
+  margin-top: 10px;
 }
 
 .copyright {
@@ -52,5 +54,11 @@
 }
 
 .center {
-  text-align: center
+  text-align: center;
+}
+
+@media screen and (max-width: 999px) {
+  .desktop {
+    display: none;
+  }
 }

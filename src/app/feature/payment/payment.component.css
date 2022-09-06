@@ -11,6 +11,8 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .table {
@@ -29,7 +31,7 @@
 }
 
 .table-cell-data {
-  width: 150px;
+  width: 125px;
   display: inline-flex;
 }
 

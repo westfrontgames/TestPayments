@@ -9,6 +9,7 @@
   max-width: 1200px;
   justify-content: center;
   height: 50px;
+  background-color: #fff;
 }
 
 #affirm:hover {
@@ -83,4 +84,180 @@ li a:focus {
 
 .right {
   text-align: right;
+}
+
+.left {
+  margin-left: 15px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s, visibility 0.35s, height 0.35s;
+  overflow: hidden;
+  background: black;
+  z-index: -1;
+}
+
+#main-menu {
+  display: block;
+  height: 100px;
+  width: 100%;
+  background: #fff;
+  margin: 0px;
+  z-index: 9;
+}
+
+#main-menu ul {
+  max-width: 400px;
+  width: 100%;
+  height: 100%;
+  margin: 0px auto;
+  padding: 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 9;
+}
+
+#main-menu li {
+  list-style-type: none;
+  font-size: 2rem;
+}
+
+#main-menu a {
+  color: #000;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+#main-menu a:hover {
+  text-decoration: underline;
+}
+
+#hamburger-input {
+  display: none;
+}
+
+#hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 25px;
+  height: 25px;
+  display: none;
+  border: none;
+  padding: 0px;
+  margin: 0px;
+  font-family: "Cabin", Sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #000,
+    #000 20%,
+    white 20%,
+    white 40%,
+    #000 40%,
+    #000 60%,
+    white 60%,
+    white 80%,
+    #000 80%,
+    #000 100%
+  );
+}
+
+#hamburger-menu #sidebar-menu {
+  visibility: hidden;
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 200px;
+  height: 100%;
+  background-color: #fff;
+  transition: 0.3s;
+  padding: 0px 10px;
+  box-sizing: border-box;
+}
+
+#hamburger-menu h3 {
+  color: #000;
+  font-size: 1rem;
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+#hamburger-menu ul {
+  padding-left: 0px;
+  padding-top: 10px;
+  width: 120px;
+}
+
+#hamburger-menu li {
+  list-style-type: none;
+  line-height: 2rem;
+}
+
+#hamburger-menu a {
+  color: #000;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+#hamburger-menu a:hover {
+  text-decoration: underline;
+}
+
+#hamburger-input:checked + #hamburger-menu #sidebar-menu {
+  visibility: visible;
+  left: 0;
+}
+#hamburger-input:checked ~ .overlay {
+  visibility: visible;
+  opacity: 0.4;
+}
+
+@media screen and (min-width: 1000px) {
+  #main-menu {
+    display: none;
+  }
+  #hamburger-menu {
+    display: inline;
+  }
+  .tablet {
+    display: none;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 999px) and (min-width: 581px) {
+  .desktop {
+    display: none;
+  }
+  .tablet {
+    display: block;
+  }
+  .mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  #main-menu {
+    display: none;
+  }
+  #hamburger-menu {
+    display: inline;
+  }
+  .desktop {
+    display: none;
+  }
+  .tablet {
+    display: none;
+  }
 }
