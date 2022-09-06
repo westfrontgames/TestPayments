@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { CurrencyOrDefaultPipe } from 'src/app/shared/pipes/currency-or-default.pipe';
 import {
   StudentExpense,
   StudentExpenseModel,
@@ -32,19 +31,10 @@ export class ExpenseFormComponent {
   public totalCurrExpenses: number = 0;
 
   public saveExpense(): void {
-    this.allCurrExpenses = {};
-    this.totalCurrExpenses = 0;
     let errorFound = false;
 
     if (this.expense.name.replace(' ', '') === '') {
       this.expense.invalidName = true;
-      errorFound = true;
-    }
-
-    const regex = /^\s*-?[1-9]\d*(\.\d{1,2})?\s*$/;
-    const amount = this.expense.amount === null ? 0 : this.expense.amount;
-    if (!regex.test(amount.toString())) {
-      this.expense.invalidAmount = true;
       errorFound = true;
     }
 
@@ -53,10 +43,19 @@ export class ExpenseFormComponent {
       errorFound = true;
     }
 
+    const regex = /^-?(\d+(\.\d{1,2})?|\d*\.(\d{1,2}))$/;
+    const amount = this.expense.amount === null ? 0 : this.expense.amount;
+    if (!regex.test(amount.toString())) {
+      this.expense.invalidAmount = true;
+      errorFound = true;
+    }
+
     if (errorFound) {
       return;
     }
 
+    this.allCurrExpenses = {};
+    this.totalCurrExpenses = 0;
     // equivalent of doing an Insert to the database
     this.allExpenses.push({
       name: this.expense.name,
@@ -69,7 +68,7 @@ export class ExpenseFormComponent {
     this.expenseSubmitted.emit(this.expense);
     this.clearValues();
 
-    /* Output a line for each student with all their expenses */
+    /* Output a comma separated line for each student with all their expenses */
     for (let expense of this.allExpenses) {
       // nasty type checking since amount is nullable
       let currExpense: string =
