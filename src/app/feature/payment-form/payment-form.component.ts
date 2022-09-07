@@ -58,7 +58,8 @@ export class PaymentFormComponent {
       errorFound = true;
     }
 
-    const regex = /^\s*-?[1-9]\d*(\.\d{1,2})?\s*$/;
+    //const regex = /^\s*-?[1-9]\d*(\.\d{1,2})?\s*$/;
+    const regex = /^-?(\d+(\.\d{1,2})?|\d*\.(\d{1,2}))$/;
     const amount = this.paymentFormGroup.value.paymentAmount;
     if (!regex.test(amount.toString())) {
       this.invalidAmount = true;
@@ -67,7 +68,12 @@ export class PaymentFormComponent {
 
     // check payment amount vs balance
     const payment: number = this.paymentFormGroup.value.paymentAmount;
-    if (payment > this.accountBalance) {
+    // needed this casting due to this.accountBalance = ".01" being treated as "0.0099999999"
+    // when making a payment of .01
+    if (
+      parseFloat(payment.toString()).toFixed(2) >
+      parseFloat(this.accountBalance.toString()).toFixed(2)
+    ) {
       this.payExceedsBalance = true;
       errorFound = true;
     }
@@ -99,7 +105,13 @@ export class PaymentFormComponent {
   }
 
   private getNewBalance(payment: number, balance: number): number {
-    return balance - payment;
+    this.accountBalance = balance - payment;
+    // when balance is less than $1.00 and payment === balance,
+    // it was returing "-0.00", so this makes it "0.00"
+    if (Math.sign(this.accountBalance) === -1) {
+      this.accountBalance = Math.abs(this.accountBalance);
+    }
+    return this.accountBalance;
   }
 
   private validateForm(): void {}

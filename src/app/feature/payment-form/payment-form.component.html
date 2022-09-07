@@ -141,7 +141,7 @@
         <div class="table-cell-label"></div>
         <div class="table-cell-input">
           <label class="validation-error"
-            >Payment can't exceed balance ({{ accountBalance }})</label
+            >Payment can't exceed balance ({{ accountBalance | currencyOrDefault }})</label
           >
         </div>
       </div>
